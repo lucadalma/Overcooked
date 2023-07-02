@@ -5,7 +5,13 @@ using UnityEngine.AI;
 
 public enum State
 {
-    Idle
+    Idle,
+    CheckRecipe,
+    Cook,
+    GetIngredients,
+    GoToSleep,
+    GetUp,
+
 }
 
 public class AIState
@@ -22,28 +28,20 @@ public class AIState
 
     //Refs
     protected GameObject npc;
-    protected Animator anim;
-    protected Transform player;
     protected AIState nextState;
     protected NavMeshAgent agent;
-    protected Transform[] checkpoints;
-
-    //Stats
-    float visDist = 15.0f;
-    float visAngle = 30.0f;
-    float attackRange = 7.0f;
-    float fleeRange = 2.0f;
-    float escapeAngle = 30.0f;
+    protected RicettaScript ricetta;
+    protected Transform IdleSpot;
+    protected Transform CookingSpot;
+    protected Transform ingredientsSpot;
+    //protected Transform[] checkpoints;
 
 
-    public AIState(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player, Transform[] _checkpoints)
+    public AIState(GameObject _npc, NavMeshAgent _agent, RicettaScript _ricettaScript)
     {
         stage = Event.Enter;
         npc = _npc;
         agent = _agent;
-        anim = _anim;
-        player = _player;
-        checkpoints = _checkpoints;
     }
 
     public virtual void Enter() { stage = Event.Update; }
@@ -68,62 +66,63 @@ public class AIState
 
     }
 
-    public bool CanSeePlayer()
-    {
-        Vector3 direction = player.position - npc.transform.position;
+    //public bool CanSeePlayer()
+    //{
+    //    Vector3 direction = player.position - npc.transform.position;
 
-        float angle = Vector3.Angle(direction, npc.transform.forward);
+    //    float angle = Vector3.Angle(direction, npc.transform.forward);
 
-        if (direction.magnitude < visDist && angle < visAngle)
-        {
-            return true;
-        }
+    //    if (direction.magnitude < visDist && angle < visAngle)
+    //    {
+    //        return true;
+    //    }
 
-        return false;
+    //    return false;
 
-    }
+    //}
 
-    public bool CanSeeMe()
-    {
-        Vector3 direction = npc.transform.position - Camera.main.transform.position;
+    //public bool CanSeeMe()
+    //{
+    //    Vector3 direction = npc.transform.position - Camera.main.transform.position;
 
-        float angle = Vector3.Angle(direction, Camera.main.transform.forward);
+    //    float angle = Vector3.Angle(direction, Camera.main.transform.forward);
 
 
 
-        if (angle < visAngle)
-        {
-            return true;
-        }
+    //    if (angle < visAngle)
+    //    {
+    //        return true;
+    //    }
 
-        return false;
+    //    return false;
 
-    }
+    //}
 
-    public bool CanAttackPlayer()
-    {
-        Vector3 direction = player.position - npc.transform.position;
+    //public bool CanAttackPlayer()
+    //{
+    //    Vector3 direction = player.position - npc.transform.position;
 
-        if (direction.magnitude < attackRange)
-        {
-            return true;
-        }
+    //    if (direction.magnitude < attackRange)
+    //    {
+    //        return true;
+    //    }
 
-        return false;
-    }
+    //    return false;
+    //}
 
-    public bool IsPlayerToNear()
-    {
-        Vector3 direction = npc.transform.position - player.position;
+    //public bool IsPlayerToNear()
+    //{
+    //    Vector3 direction = npc.transform.position - player.position;
 
-        float angle = Vector3.Angle(direction, npc.transform.forward);
+    //    float angle = Vector3.Angle(direction, npc.transform.forward);
 
-        if (direction.magnitude < fleeRange && angle < escapeAngle)
-        {
-            Debug.Log("Escape");
-            return true;
-        }
+    //    if (direction.magnitude < fleeRange && angle < escapeAngle)
+    //    {
+    //        Debug.Log("Escape");
+    //        return true;
+    //    }
 
-        return false;
-    }
+    //    return false;
+    //}
+
 }
