@@ -23,9 +23,46 @@ public class Cook : AIState
 
         Debug.Log("Inzio a cucinare");
 
-        RicettaScript tmp_ricetta = npc.GetComponent<AIController>().ricetta;
+        if (!agent.pathPending)
+        {
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    RicettaScript tmp_ricetta = npc.GetComponent<AIController>().ricetta;
 
-        
+
+                    foreach (Ingrediente ingrediente in tmp_ricetta.ingredienti)
+                    {
+                        if (ingrediente.IngridientName == npc.GetComponent<InventoryScript>().ingrediente1.IngridientName)
+                        {
+                            npc.GetComponent<InventoryScript>().ingrediente1.Quantity -= ingrediente.Quantity;
+                        }
+                        else if (ingrediente.IngridientName == npc.GetComponent<InventoryScript>().ingrediente2.IngridientName)
+                        {
+                            npc.GetComponent<InventoryScript>().ingrediente2.Quantity -= ingrediente.Quantity;
+                        }
+                        else if (ingrediente.IngridientName == npc.GetComponent<InventoryScript>().ingrediente3.IngridientName)
+                        {
+                            npc.GetComponent<InventoryScript>().ingrediente3.Quantity -= ingrediente.Quantity;
+                        }
+                    }
+
+                    npc.GetComponent<AIController>().ricetta.Isdone = true;
+
+                    npc.GetComponent<AIController>().ricetta.gameObject.SetActive(false);
+
+                    npc.GetComponent<AIController>().ricetta = null;
+
+                    nextState = new Idle(npc, agent, ricetta, IdleSpot, CookingSpot, restingSpot, Ingrediente1Spot, Ingrediente2Spot, Ingrediente3Spot);
+                    stage = Event.Exit;
+                    return;
+                }
+            }
+        }
+
+
+
 
         base.Update();
     }

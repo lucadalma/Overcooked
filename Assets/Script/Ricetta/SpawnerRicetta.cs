@@ -7,6 +7,8 @@ public class SpawnerRicetta : MonoBehaviour
     [SerializeField]
     GameObject[] ricette;
 
+    private GameObject tmp_ricetta;
+
     public bool canSpawn;
     private void Start()
     {
@@ -17,9 +19,15 @@ public class SpawnerRicetta : MonoBehaviour
     {
         if (canSpawn) 
         {
-            Instantiate(ricette[Random.Range(0,3)], transform.position, Quaternion.identity);
+            tmp_ricetta = Instantiate(ricette[Random.Range(0,3)], transform.position, Quaternion.identity);
             canSpawn = false;
         }
+
+        if (tmp_ricetta.activeSelf == false) 
+        {
+            canSpawn = true;
+        }
+
     }
 
 }
