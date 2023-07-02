@@ -12,7 +12,7 @@ public class BarileScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("chef")) 
+        if (other.CompareTag("Chef")) 
         {
             if (Ingrediente1) 
             {

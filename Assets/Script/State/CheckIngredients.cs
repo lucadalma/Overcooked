@@ -27,24 +27,27 @@ public class CheckIngredients : AIState
         {
             if (tmp_ingredient.IngridientName == npc.GetComponent<InventoryScript>().ingrediente1.IngridientName && tmp_ingredient.Quantity > npc.GetComponent<InventoryScript>().ingrediente1.Quantity)
             {
-                //Ricarica specifico ingrediente
-                agent.SetDestination(Ingrediente1Spot.position);
+                nextState = new GetIngredient1(npc, agent, ricetta, IdleSpot, CookingSpot, restingSpot, Ingrediente1Spot, Ingrediente2Spot, Ingrediente3Spot);
+                stage = Event.Exit;
+                return;
             }
             else if (tmp_ingredient.IngridientName == npc.GetComponent<InventoryScript>().ingrediente2.IngridientName && tmp_ingredient.Quantity > npc.GetComponent<InventoryScript>().ingrediente2.Quantity)
             {
-                //Ricarica specifico ingrediente
-                agent.SetDestination(Ingrediente2Spot.position);
+                nextState = new GetIngredient2(npc, agent, ricetta, IdleSpot, CookingSpot, restingSpot, Ingrediente1Spot, Ingrediente2Spot, Ingrediente3Spot);
+                stage = Event.Exit;
+                return;
             }
             else if (tmp_ingredient.IngridientName == npc.GetComponent<InventoryScript>().ingrediente3.IngridientName && tmp_ingredient.Quantity > npc.GetComponent<InventoryScript>().ingrediente3.Quantity)
             {
-                //Ricarica specifico ingrediente
-                agent.SetDestination(Ingrediente3Spot.position);
+                nextState = new GetIngredient3(npc, agent, ricetta, IdleSpot, CookingSpot, restingSpot, Ingrediente1Spot, Ingrediente2Spot, Ingrediente3Spot);
+                stage = Event.Exit;
+                return;
 
             }
 
         }
 
-        //nextState = new Cook(npc, agent, ricetta, IdleSpot, CookingSpot, restingSpot, Ingrediente1Spot, Ingrediente2Spot, Ingrediente3Spot);
+        nextState = new Cook(npc, agent, ricetta, IdleSpot, CookingSpot, restingSpot, Ingrediente1Spot, Ingrediente2Spot, Ingrediente3Spot);
         stage = Event.Exit;
         return;
 

@@ -7,6 +7,9 @@ public enum State
 {
     Idle,
     CheckIngredients,
+    GetIngredient1,
+    GetIngredient2,
+    GetIngredient3,
     Cook,
     GoToSleep,
     GetUp,
