@@ -45,8 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065a79ab99778564396a7da20cdcf2f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NomeRicetta: 
-  listaIngredienti: []
+  NomeRicetta: Ricetta3
+  ingredienti:
+  - IngridientName: Ingrediente1
+    Quantity: 2
+  - IngridientName: Ingrediente3
+    Quantity: 4
   Isdone: 0
 --- !u!65 &1218882307051896353
 BoxCollider:

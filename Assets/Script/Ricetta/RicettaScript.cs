@@ -7,7 +7,7 @@ public class RicettaScript : MonoBehaviour
 
     public string NomeRicetta;
 
-    public string[] listaIngredienti;
+    public Ingrediente[] ingredienti;
 
     public bool Isdone;
 
@@ -16,6 +16,7 @@ public class RicettaScript : MonoBehaviour
         if (other.CompareTag("Chef")) 
         {
             other.GetComponent<AIController>().ricetta = gameObject.GetComponent<RicettaScript>();
+            gameObject.GetComponent<BoxCollider>().enabled = false;
         }
     }
 

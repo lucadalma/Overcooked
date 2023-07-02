@@ -5,42 +5,31 @@ using UnityEngine.AI;
 
 public class Idle : AIState
 {
-    public Idle(GameObject _npc, NavMeshAgent _agent, RicettaScript _ricettaScript)
-        : base(_npc, _agent, _ricettaScript)
+
+
+
+    public Idle(GameObject _npc, NavMeshAgent _agent, RicettaScript _ricettaScript, Transform _idelSpot, Transform _cookingSpot, Transform _restingSpot, Transform _Ingrediente1Spot, Transform _Ingrediente2Spot, Transform _Ingrediente3Spot)
+        : base(_npc, _agent, _ricettaScript, _idelSpot, _cookingSpot, _restingSpot, _Ingrediente1Spot, _Ingrediente2Spot, _Ingrediente3Spot)
     {
         name = State.Idle;
     }
 
     public override void Enter()
     {
-        //TODO: Set animazione di Idle;
         base.Enter();
+        Debug.Log("Entrato in Idle");
     }
 
     public override void Update()
-    {
-        //if (CanSeePlayer())
-        //{
-        //    if (CanSeeMe())
-        //    {
-        //        nextState = new Hide(npc, agent, checkpoints);
-        //        stage = Event.Exit;
-        //        return;
-        //    }
-        //    else
-        //    {
-        //        nextState = new Chase(npc, agent, checkpoints);
-        //        stage = Event.Exit;
-        //        return;
-        //    }
-        //}
+    { 
+        agent.SetDestination(IdleSpot.position);
 
-        //if (Random.Range(0, 100) < 10)
-        //{
-        //    nextState = new Patrol(npc, agent, checkpoints);
-        //    stage = Event.Exit;
-        //    return;
-        //}
+        if (npc.GetComponent<AIController>().ricetta != null) 
+        {
+            nextState = new CheckIngredients(npc, agent, ricetta, IdleSpot, CookingSpot, restingSpot, Ingrediente1Spot, Ingrediente2Spot, Ingrediente3Spot);
+            stage = Event.Exit;
+            return;
+        }
 
         base.Update();
     }
@@ -48,6 +37,7 @@ public class Idle : AIState
     public override void Exit()
     {
         //TODO reset animazione
+        Debug.Log("Uscito dall'Idle");
         base.Exit();
     }
 }

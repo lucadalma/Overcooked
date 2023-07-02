@@ -6,9 +6,8 @@ using UnityEngine.AI;
 public enum State
 {
     Idle,
-    CheckRecipe,
+    CheckIngredients,
     Cook,
-    GetIngredients,
     GoToSleep,
     GetUp,
 
@@ -33,15 +32,25 @@ public class AIState
     protected RicettaScript ricetta;
     protected Transform IdleSpot;
     protected Transform CookingSpot;
-    protected Transform ingredientsSpot;
+    protected Transform restingSpot;
+    protected Transform Ingrediente1Spot;
+    protected Transform Ingrediente2Spot;
+    protected Transform Ingrediente3Spot;
     //protected Transform[] checkpoints;
 
 
-    public AIState(GameObject _npc, NavMeshAgent _agent, RicettaScript _ricettaScript)
+    public AIState(GameObject _npc, NavMeshAgent _agent, RicettaScript _ricetta, Transform _idleSpot, Transform _cookingSpot, Transform _restingSpot, Transform _Ingrediente1Spot, Transform _Ingrediente2Spot, Transform _Ingrediente3Spot)
     {
         stage = Event.Enter;
         npc = _npc;
         agent = _agent;
+        ricetta = _ricetta;
+        IdleSpot = _idleSpot;
+        CookingSpot = _cookingSpot;
+        restingSpot = _restingSpot;
+        Ingrediente1Spot = _Ingrediente1Spot;
+        Ingrediente2Spot = _Ingrediente2Spot;
+        Ingrediente3Spot = _Ingrediente3Spot;
     }
 
     public virtual void Enter() { stage = Event.Update; }
