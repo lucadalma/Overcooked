@@ -19,6 +19,8 @@ public class AIController : MonoBehaviour
     public Transform Ingredient2Spot;
     [SerializeField]
     public Transform Ingredient3Spot;
+    [SerializeField]
+    public GameManager gameManager;
 
     NavMeshAgent agent;
     AIState currentState;
@@ -26,7 +28,7 @@ public class AIController : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        currentState = new Idle(gameObject, agent, ricetta, IdleSpot, CookingSpot, restingSpot, Ingredient1Spot, Ingredient2Spot, Ingredient3Spot);
+        currentState = new Idle(gameObject, agent, ricetta, IdleSpot, CookingSpot, restingSpot, Ingredient1Spot, Ingredient2Spot, Ingredient3Spot, gameManager);
     }
 
     private void Update()

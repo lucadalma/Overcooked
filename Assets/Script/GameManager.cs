@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public bool isNight;
 
+    public bool isDay;
 }

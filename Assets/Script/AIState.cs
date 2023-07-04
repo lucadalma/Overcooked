@@ -12,8 +12,6 @@ public enum State
     GetIngredient3,
     Cook,
     GoToSleep,
-    GetUp,
-
 }
 
 public class AIState
@@ -39,10 +37,11 @@ public class AIState
     protected Transform Ingrediente1Spot;
     protected Transform Ingrediente2Spot;
     protected Transform Ingrediente3Spot;
+    protected GameManager gameManager;
     //protected Transform[] checkpoints;
 
 
-    public AIState(GameObject _npc, NavMeshAgent _agent, RicettaScript _ricetta, Transform _idleSpot, Transform _cookingSpot, Transform _restingSpot, Transform _Ingrediente1Spot, Transform _Ingrediente2Spot, Transform _Ingrediente3Spot)
+    public AIState(GameObject _npc, NavMeshAgent _agent, RicettaScript _ricetta, Transform _idleSpot, Transform _cookingSpot, Transform _restingSpot, Transform _Ingrediente1Spot, Transform _Ingrediente2Spot, Transform _Ingrediente3Spot, GameManager _gameManager)
     {
         stage = Event.Enter;
         npc = _npc;
@@ -54,6 +53,7 @@ public class AIState
         Ingrediente1Spot = _Ingrediente1Spot;
         Ingrediente2Spot = _Ingrediente2Spot;
         Ingrediente3Spot = _Ingrediente3Spot;
+        gameManager = _gameManager;
     }
 
     public virtual void Enter() { stage = Event.Update; }
@@ -136,5 +136,7 @@ public class AIState
 
     //    return false;
     //}
+
+
 
 }

@@ -5,8 +5,8 @@ using UnityEngine.AI;
 
 public class Cook : AIState
 {
-    public Cook(GameObject _npc, NavMeshAgent _agent, RicettaScript _ricettaScript, Transform _idelSpot, Transform _cookingSpot, Transform _restingSpot, Transform _Ingrediente1Spot, Transform _Ingrediente2Spot, Transform _Ingrediente3Spot)
-        : base(_npc, _agent, _ricettaScript, _idelSpot, _cookingSpot, _restingSpot, _Ingrediente1Spot, _Ingrediente2Spot, _Ingrediente3Spot)
+    public Cook(GameObject _npc, NavMeshAgent _agent, RicettaScript _ricettaScript, Transform _idelSpot, Transform _cookingSpot, Transform _restingSpot, Transform _Ingrediente1Spot, Transform _Ingrediente2Spot, Transform _Ingrediente3Spot, GameManager _gameManager)
+        : base(_npc, _agent, _ricettaScript, _idelSpot, _cookingSpot, _restingSpot, _Ingrediente1Spot, _Ingrediente2Spot, _Ingrediente3Spot, _gameManager)
     {
         name = State.Cook;
     }
@@ -31,7 +31,6 @@ public class Cook : AIState
                 {
                     RicettaScript tmp_ricetta = npc.GetComponent<AIController>().ricetta;
 
-
                     foreach (Ingrediente ingrediente in tmp_ricetta.ingredienti)
                     {
                         if (ingrediente.IngridientName == npc.GetComponent<InventoryScript>().ingrediente1.IngridientName)
@@ -54,7 +53,7 @@ public class Cook : AIState
 
                     npc.GetComponent<AIController>().ricetta = null;
 
-                    nextState = new Idle(npc, agent, ricetta, IdleSpot, CookingSpot, restingSpot, Ingrediente1Spot, Ingrediente2Spot, Ingrediente3Spot);
+                    nextState = new Idle(npc, agent, ricetta, IdleSpot, CookingSpot, restingSpot, Ingrediente1Spot, Ingrediente2Spot, Ingrediente3Spot, gameManager);
                     stage = Event.Exit;
                     return;
                 }
