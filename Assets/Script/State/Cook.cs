@@ -17,6 +17,8 @@ public class Cook : AIState
         Debug.Log("Entrato in Cook");
     }
 
+    
+
     public override void Update()
     {
         agent.SetDestination(CookingSpot.position);
@@ -59,9 +61,6 @@ public class Cook : AIState
                 }
             }
         }
-
-
-
 
         base.Update();
     }

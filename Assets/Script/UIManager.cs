@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -27,6 +29,8 @@ public class UIManager : MonoBehaviour
     TextMeshProUGUI Ingrediente2Qta;
 
     InventoryScript inventory;
+    NavMeshAgent agent;
+    
 
     [SerializeField]
     TextMeshProUGUI InventoryIngrediente1;
@@ -41,12 +45,19 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI InventoryIngrediente3Qta;
 
+    [SerializeField]
+    Slider slider;
+
 
     void Start()
     {
         RicettaCanvas.SetActive(false);
         InventoryCanvas.SetActive(false);
         inventory = AI.gameObject.GetComponent<InventoryScript>();
+        agent = AI.gameObject.GetComponent<NavMeshAgent>();
+        slider.maxValue = 4;
+        slider.value = agent.speed;
+
     }
 
     
@@ -104,6 +115,8 @@ public class UIManager : MonoBehaviour
         InventoryIngrediente1Qta.text = "Quantità: " + inventory.ingrediente1.Quantity.ToString();
         InventoryIngrediente2Qta.text = "Quantità: " + inventory.ingrediente2.Quantity.ToString();
         InventoryIngrediente3Qta.text = "Quantità: " + inventory.ingrediente3.Quantity.ToString();
+
+        agent.speed = slider.value;
 
 
 
