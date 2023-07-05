@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065a79ab99778564396a7da20cdcf2f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NomeRicetta: Ricetta1
+  NomeRicetta: Pollo con Pomodoro
   ingredienti:
-  - IngridientName: Ingrediente1
+  - IngridientName: Pollo
     Quantity: 2
-  - IngridientName: Ingrediente2
+  - IngridientName: Pomodoro
     Quantity: 3
   Isdone: 0
 --- !u!65 &3742602021041430178
