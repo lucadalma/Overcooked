@@ -19,9 +19,10 @@ public class GoToSleep : AIState
 
     public override void Update()
     {
-
+        //go to sleep destination
         agent.SetDestination(restingSpot.position);
 
+        //if is day go to idle
         if (gameManager.isDay) 
         {
             nextState = new Idle(npc, agent, ricetta, IdleSpot, CookingSpot, restingSpot, Ingrediente1Spot, Ingrediente2Spot, Ingrediente3Spot, gameManager);

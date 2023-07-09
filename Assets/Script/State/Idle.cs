@@ -19,9 +19,12 @@ public class Idle : AIState
 
     public override void Update()
     { 
+        //go to idle position
         agent.SetDestination(IdleSpot.position);
+        //check if is day or not
         if (gameManager.isDay)
         {
+            //continue cooking
             if (npc.GetComponent<AIController>().ricetta != null)
             {
                 nextState = new CheckIngredients(npc, agent, ricetta, IdleSpot, CookingSpot, restingSpot, Ingrediente1Spot, Ingrediente2Spot, Ingrediente3Spot, gameManager);
@@ -31,6 +34,7 @@ public class Idle : AIState
         }
         else if (gameManager.isNight) 
         {
+            //go to sleep
             nextState = new GoToSleep(npc, agent, ricetta, IdleSpot, CookingSpot, restingSpot, Ingrediente1Spot, Ingrediente2Spot, Ingrediente3Spot, gameManager);
             stage = Event.Exit;
             return;
@@ -41,7 +45,6 @@ public class Idle : AIState
 
     public override void Exit()
     {
-        //TODO reset animazione
         Debug.Log("Uscito dall'Idle");
         base.Exit();
     }

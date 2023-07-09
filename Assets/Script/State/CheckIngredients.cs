@@ -23,6 +23,7 @@ public class CheckIngredients : AIState
 
         Ingrediente[] tmp_ingredients = npc.GetComponent<AIController>().ricetta.ingredienti;
 
+        //check foreach ingridient and check inventory
         foreach (Ingrediente tmp_ingredient in tmp_ingredients)
         {
             if (tmp_ingredient.IngridientName == npc.GetComponent<InventoryScript>().ingrediente1.IngridientName && tmp_ingredient.Quantity > npc.GetComponent<InventoryScript>().ingrediente1.Quantity)
